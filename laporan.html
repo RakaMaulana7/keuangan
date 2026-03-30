@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TransaksiKu – Laporan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <main class="main" id="main">
+    <!-- SECTION: Laporan -->
+    <section class="section" id="section-laporan">
+      <div class="section-header">
+        <h1>Laporan Keuangan</h1>
+        <p>Analisis pengeluaran dan pemasukan Anda</p>
+      </div>
+
+      <div class="report-grid">
+        <!-- Kas Bulan Ini -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Ringkasan Bulan Ini</h2>
+          </div>
+          <div class="monthly-report" id="monthlyReport">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Pengeluaran Kategori -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Pengeluaran per Kategori</h2>
+          </div>
+          <div class="kategori-report" id="kategoriReport">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="api.js"></script>
+  <script src="layout.js"></script>
+  <script src="laporan.js"></script>
+</body>
+</html>

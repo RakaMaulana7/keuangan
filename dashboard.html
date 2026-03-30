@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TransaksiKu – Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- Layout (Sidebar & Topbar) injected by JS -->
+  <main class="main" id="main">
+    <!-- SECTION: Dashboard -->
+    <section class="section" id="section-dashboard">
+      <div class="section-header">
+        <h1>Selamat Datang 👋</h1>
+        <p>Ringkasan keuangan Anda hari ini</p>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="cards-grid">
+        <div class="card card-income">
+          <div class="card-icon"><i data-lucide="arrow-down-circle"></i></div>
+          <div class="card-info">
+            <span class="card-label">Total Pemasukan</span>
+            <span class="card-value" id="totalPemasukan">Rp 0</span>
+          </div>
+          <div class="card-badge badge-income">Pemasukan</div>
+        </div>
+        <div class="card card-expense">
+          <div class="card-icon"><i data-lucide="arrow-up-circle"></i></div>
+          <div class="card-info">
+            <span class="card-label">Total Pengeluaran</span>
+            <span class="card-value" id="totalPengeluaran">Rp 0</span>
+          </div>
+          <div class="card-badge badge-expense">Pengeluaran</div>
+        </div>
+        <div class="card card-balance">
+          <div class="card-icon"><i data-lucide="briefcase"></i></div>
+          <div class="card-info">
+            <span class="card-label">Saldo Bersih</span>
+            <span class="card-value" id="saldoBersih">Rp 0</span>
+          </div>
+          <div class="card-badge badge-balance">Saldo</div>
+        </div>
+        <div class="card card-total">
+          <div class="card-icon"><i data-lucide="layers"></i></div>
+          <div class="card-info">
+            <span class="card-label">Total Transaksi</span>
+            <span class="card-value" id="totalCount">0</span>
+          </div>
+          <div class="card-badge badge-total">Semua</div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Transaksi Terbaru</h2>
+          <a href="transaksi.html" class="btn-ghost" style="text-decoration:none;">Lihat Semua <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div id="recentList" class="transaction-list"></div>
+        <div id="recentEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon"><i data-lucide="inbox"></i></div>
+          <p>Belum ada transaksi</p>
+          <a href="transaksi.html" class="btn-primary" style="text-decoration:none;"><i data-lucide="plus"></i> Tambah Pertama</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="api.js"></script>
+  <script src="layout.js"></script>
+  <!-- Page Specific Script -->
+  <script src="dashboard.js"></script>
+</body>
+</html>

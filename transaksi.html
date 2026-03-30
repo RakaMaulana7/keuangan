@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TransaksiKu – Manajemen Transaksi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <main class="main" id="main">
+    <!-- SECTION: Transaksi -->
+    <section class="section" id="section-transaksi">
+      <div class="section-header">
+        <h1>Manajemen Transaksi</h1>
+        <p>Kelola semua transaksi keuangan Anda</p>
+      </div>
+
+      <!-- Filter & Search -->
+      <div class="filter-bar">
+        <div class="search-wrap">
+          <span class="search-icon"><i data-lucide="search"></i></span>
+          <input type="text" id="searchInput" placeholder="Cari transaksi..." oninput="filterTransactions()" />
+        </div>
+        <select id="filterType" onchange="filterTransactions()">
+          <option value="all">Semua Tipe</option>
+          <option value="pemasukan">Pemasukan</option>
+          <option value="pengeluaran">Pengeluaran</option>
+        </select>
+        <select id="filterKategori" onchange="filterTransactions()">
+          <option value="all">Semua Kategori</option>
+          <!-- Categories injected here -->
+        </select>
+      </div>
+
+      <!-- Table Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Daftar Transaksi</h2>
+          <span class="count-badge" id="trxCount">0 Transaksi</span>
+        </div>
+        <div class="table-wrapper">
+          <table class="trx-table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Deskripsi</th>
+                <th>Kategori</th>
+                <th>Tipe</th>
+                <th>Jumlah</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="trxTableBody">
+              <!-- Rows injected via JS -->
+            </tbody>
+          </table>
+        </div>
+        <div id="tableEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon"><i data-lucide="search-x"></i></div>
+          <p>Tidak ada transaksi yang cocok</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Tambah Transaksi</h2>
+        <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+      </div>
+      <form id="trxForm" onsubmit="submitForm(event)">
+        <input type="hidden" id="editId" />
+        <div class="form-grid">
+          <div class="form-group" style="grid-column: 1 / -1">
+            <label>Deskripsi</label>
+            <input type="text" id="fDeskripsi" placeholder="Makan siang, Gaji bulanan..." required />
+          </div>
+          <div class="form-group">
+            <label>Jumlah (Rp)</label>
+            <input type="number" id="fJumlah" placeholder="50000" min="0" required />
+          </div>
+          <div class="form-group">
+            <label>Tipe</label>
+            <select id="fTipe" required>
+              <option value="pengeluaran">Pengeluaran</option>
+              <option value="pemasukan">Pemasukan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="fKategori" required>
+              <!-- Categories injected here -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tanggal</label>
+            <input type="date" id="fTanggal" required />
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1">
+            <label>Catatan Opsional</label>
+            <input type="text" id="fCatatan" placeholder="Tambahkan detail jika perlu" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-ghost" onclick="closeModal()">Batal</button>
+          <button type="submit" class="btn-primary" id="submitBtn">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="deleteOverlay" onclick="closeDeleteOutside(event)" style="display:none">
+    <div class="modal confirm-modal">
+      <div class="modal-header">
+        <h2>Hapus Transaksi</h2>
+        <button class="modal-close" onclick="closeDelete()"><i data-lucide="x"></i></button>
+      </div>
+      <div style="padding:24px; text-align:center">
+        <div class="delete-icon-wrap"><i data-lucide="trash-2"></i></div>
+        <p style="margin-bottom:8px; font-weight:600">Yakin ingin menghapus ini?</p>
+        <p style="font-size:0.875rem; color:var(--text-muted)">Tindakan ini tidak dapat dibatalkan dan akan mempengaruhi saldo Anda.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" onclick="closeDelete()">Batal</button>
+        <button class="btn-danger" id="confirmDeleteBtn" onclick="confirmDelete()">Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="api.js"></script>
+  <script src="layout.js"></script>
+  <script src="transaksi.js"></script>
+</body>
+</html>
