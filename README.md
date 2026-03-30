@@ -73,6 +73,3 @@ keuangan/
 └── README.md           # Dokumentasi ini
 ```
 
-## Lisensi
-
-[Tambahkan informasi lisensi di sini jika ada]
