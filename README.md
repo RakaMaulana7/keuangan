@@ -37,7 +37,7 @@ Ikuti langkah-langkah di bawah ini untuk menjalankan project ini di komputer lok
 
 1. **Clone repositori ini:**
    ```bash
-   git clone <URL_REPOSITORI_ANDA>
+   git clone https://github.com/RakaMaulana7/keuangan.git
    cd keuangan
    ```
 
